@@ -1,0 +1,378 @@
+import customtkinter as ctk
+from PIL import Image, ImageTk
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+def janela1():
+    def fechar():
+        janela.deiconify()
+        janela1.destroy()
+    def dados():
+        q=float(qi.get())
+        A=float(Ai.get())
+        B=float(Bi.get())
+        C=float(Ci.get())
+        D=float(Di.get())
+        E=float(Ei.get())
+        F=float(Fi.get())
+        criarvetor(q,A,B,C,D,E,F)
+    def dados2():
+        A=float(Ai.get())
+        B=float(Bi.get())
+        C=float(Ci.get())
+        criarvetor3(A,B,C)
+    def dados3():
+        D=float(Di.get())
+        E=float(Ei.get())
+        F=float(Fi.get())
+        criarvetor3(D,E,F)
+    janela.iconify()
+    janela1 = ctk.CTkToplevel(janela)  
+    janela1.title("Força Magnética")  
+    janela1.geometry("1280x720")
+    imagem = Image.open("C:/Users/JoseAlves/Desktop/f3.png")
+    imagem = imagem.resize((1280, 720))  
+    imagem_tk = ImageTk.PhotoImage(imagem)
+    label = ctk.CTkLabel(janela1, image=imagem_tk,text="")
+    label.place(x=0, y=0, relwidth=1, relheight=1)
+    fechar = ctk.CTkButton(janela1,text="fechar", width=100, height=40,fg_color="red", command=fechar)
+    fechar.place(x=1170,y=10)
+    vetorizar = ctk.CTkButton(janela1,text="EXIBIR VETOR F", width=200, height=40,fg_color="green", command=dados)
+    vetorizar.place(x=300,y=550)
+    vetorizarv = ctk.CTkButton(janela1,text="EXIBIR VETOR V", width=200, height=40,fg_color="green", command=dados2)
+    vetorizarv.place(x=760,y=355)
+    vetorizarb = ctk.CTkButton(janela1,text="EXIBIR VETOR B", width=200, height=40,fg_color="green", command=dados3)
+    vetorizarb.place(x=760,y=435)
+    qi= ctk.CTkEntry(janela1,width=50)
+    qi.pack(pady=5)
+    qi.place(x=205,y=260)
+    Ai= ctk.CTkEntry(janela1,width=50)
+    Ai.pack(pady=5)
+    Ai.place(x=220,y=355)
+    Bi= ctk.CTkEntry(janela1,width=50)
+    Bi.pack(pady=5)
+    Bi.place(x=450,y=355)
+    Ci= ctk.CTkEntry(janela1,width=50)
+    Ci.pack(pady=1)
+    Ci.place(x=640,y=355)
+    Di= ctk.CTkEntry(janela1,width=50)
+    Di.pack(pady=5)
+    Di.place(x=220,y=445)
+    Ei= ctk.CTkEntry(janela1,width=50)
+    Ei.pack(pady=5)
+    Ei.place(x=450,y=445)
+    Fi= ctk.CTkEntry(janela1,width=50)
+    Fi.pack(pady=1)
+    Fi.place(x=640,y=445)
+def janela2():
+    def fechar():
+        janela.deiconify()
+        janela2.destroy()
+    def dados():
+        q=float(qi.get())
+        A=float(Ai.get())
+        B=float(Bi.get())
+        C=float(Ci.get())
+        D=float(Di.get())
+        E=float(Ei.get())
+        F=float(Fi.get())
+        criarvetor(q,A,B,C,D,E,F)
+    def dados2():
+        A=float(Ai.get())
+        B=float(Bi.get())
+        C=float(Ci.get())
+        criarvetor3(A,B,C)
+    def dados3():
+        D=float(Di.get())
+        E=float(Ei.get())
+        F=float(Fi.get())
+        criarvetor3(D,E,F)
+    janela.iconify()
+    janela2 = ctk.CTkToplevel(janela)  
+    janela2.title("Força Magnética no Fio")  
+    janela2.geometry("1280x720")
+    imagem = Image.open("C:/Users/JoseAlves/Desktop/f5.png")
+    imagem = imagem.resize((1280, 720))  
+    imagem_tk = ImageTk.PhotoImage(imagem)
+    label = ctk.CTkLabel(janela2, image=imagem_tk,text="")
+    label.place(x=0, y=0, relwidth=1, relheight=1)
+    fechar = ctk.CTkButton(janela2,text="fechar", width=100, height=40,fg_color="red", command=fechar)
+    fechar.place(x=1170,y=10)
+    vetorizar = ctk.CTkButton(janela2,text="EXIBIR VETOR F", width=200, height=40,fg_color="green", command=dados)
+    vetorizar.place(x=300,y=640)
+    vetorizarv = ctk.CTkButton(janela2,text="EXIBIR VETOR L", width=200, height=40,fg_color="green", command=dados2)
+    vetorizarv.place(x=760,y=475)
+    vetorizarb = ctk.CTkButton(janela2,text="EXIBIR VETOR B", width=200, height=40,fg_color="green", command=dados3)
+    vetorizarb.place(x=760,y=555)
+    qi= ctk.CTkEntry(janela2,width=50)
+    qi.pack(pady=5)
+    qi.place(x=185,y=355)
+    Ai= ctk.CTkEntry(janela2,width=50)
+    Ai.pack(pady=5)
+    Ai.place(x=200,y=460)
+    Bi= ctk.CTkEntry(janela2,width=50)
+    Bi.pack(pady=5)
+    Bi.place(x=420,y=470)
+    Ci= ctk.CTkEntry(janela2,width=50)
+    Ci.pack(pady=1)
+    Ci.place(x=620,y=470)
+    Di= ctk.CTkEntry(janela2,width=50)
+    Di.pack(pady=5)
+    Di.place(x=200,y=550)
+    Ei= ctk.CTkEntry(janela2,width=50)
+    Ei.pack(pady=5)
+    Ei.place(x=420,y=560)
+    Fi= ctk.CTkEntry(janela2,width=50)
+    Fi.pack(pady=1)
+    Fi.place(x=620,y=560)
+def janela3():
+    def fechar():
+        janela.deiconify()
+        janela3.destroy()
+    def dados():
+        q=float(qi.get())
+        A=float(Ai.get())
+        B=float(Bi.get())
+        C=float(Ci.get())
+        D=float(Di.get())
+        E=float(Ei.get())
+        F=float(Fi.get())
+        G=float(Gi.get())
+        H=float(Hi.get())
+        I=float(Ii.get())
+        criarvetor2(q,A,B,C,D,E,F,G,H,I)
+    def dados2():
+        A=float(Ai.get())
+        B=float(Bi.get())
+        C=float(Ci.get())
+        criarvetor3(A,B,C)
+    def dados3():
+        D=float(Di.get())
+        E=float(Ei.get())
+        F=float(Fi.get())
+        criarvetor3(D,E,F)
+    def dados4():
+        G=float(Gi.get())
+        H=float(Hi.get())
+        I=float(Ii.get())
+        criarvetor3(G,H,I)
+    janela.iconify()
+    janela3 = ctk.CTkToplevel(janela)  
+    janela3.title("Força Resultante")  
+    janela3.geometry("1280x720")
+    imagem = Image.open("C:/Users/JoseAlves/Desktop/f4.png")
+    imagem = imagem.resize((1280, 720))  
+    imagem_tk = ImageTk.PhotoImage(imagem)
+    label = ctk.CTkLabel(janela3, image=imagem_tk,text="")
+    label.place(x=0, y=0, relwidth=1, relheight=1)
+    fechar = ctk.CTkButton(janela3,text="fechar", width=100, height=40,fg_color="red", command=fechar)
+    fechar.place(x=1170,y=10)
+    vetorizar = ctk.CTkButton(janela3,text="EXIBIR VETOR", width=200, height=40,fg_color="green", command=dados)
+    vetorizar.place(x=300,y=640)
+    vetorizarv = ctk.CTkButton(janela3,text="EXIBIR VETOR V", width=200, height=40,fg_color="green", command=dados2)
+    vetorizarv.place(x=760,y=365)
+    vetorizarb = ctk.CTkButton(janela3,text="EXIBIR VETOR B", width=200, height=40,fg_color="green", command=dados3)
+    vetorizarb.place(x=760,y=455)
+    vetorizare = ctk.CTkButton(janela3,text="EXIBIR VETOR E", width=200, height=40,fg_color="green", command=dados4)
+    vetorizare.place(x=760,y=550)
+    qi= ctk.CTkEntry(janela3,width=50)
+    qi.pack(pady=5)
+    qi.place(x=205,y=260)
+    Ai= ctk.CTkEntry(janela3,width=50)
+    Ai.pack(pady=5)
+    Ai.place(x=230,y=360)
+    Bi= ctk.CTkEntry(janela3,width=50)
+    Bi.pack(pady=5)
+    Bi.place(x=440,y=365)
+    Ci= ctk.CTkEntry(janela3,width=50)
+    Ci.pack(pady=1)
+    Ci.place(x=650,y=365)
+    Di= ctk.CTkEntry(janela3,width=50)
+    Di.pack(pady=5)
+    Di.place(x=230,y=450)
+    Ei= ctk.CTkEntry(janela3,width=50)
+    Ei.pack(pady=5)
+    Ei.place(x=450,y=455)
+    Fi= ctk.CTkEntry(janela3,width=50)
+    Fi.pack(pady=1)
+    Fi.place(x=650,y=455)
+    Gi= ctk.CTkEntry(janela3,width=50)
+    Gi.pack(pady=5)
+    Gi.place(x=230,y=545)
+    Hi= ctk.CTkEntry(janela3,width=50)
+    Hi.pack(pady=5)
+    Hi.place(x=450,y=555)
+    Ii= ctk.CTkEntry(janela3,width=50)
+    Ii.pack(pady=1)
+    Ii.place(x=650,y=550)
+def criarvetor(q,A,B,C,D,E,F):
+    X=B*F-C*E
+    Y=-A*F+C*D
+    Z=A*E-B*D
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ratio=0.25 
+    if(q*X==0 or q*Y==0 or q*Z==0):
+        ratio=0.15
+    if(q*X-q*Y-q*Z>100 or q*X-q*Y-q*Z<-100):
+        ratio=0.2
+    if(q*X-q*Y-q*Z>1000 or q*X-q*Y-q*Z<-1000):
+        ratio=0.1
+    if(q*X-q*Y-q*Z>10000 or q*X-q*Y-q*Z<-10000):
+        ratio=0.05    
+    ax.quiver(0,0,0,q*X,q*Z,q*Y,pivot='tail',arrow_length_ratio=ratio)
+    ax.set_xlabel('x')
+    ax.set_ylabel('z')
+    ax.set_zlabel('y')
+    ax.set_xticks([q*X,-q*X])
+    ax.set_yticks([q*Z,-q*Z])
+    ax.set_zticks([Y*q,-q*Y])
+    ax.plot([q*X, -q*X], [0, 0], [0, 0], color='r',linestyle=':')
+    ax.plot([0, 0], [q*Z, -q*Z], [0, 0], color='g',linestyle=':')
+    ax.plot([0,0], [0, 0], [Y*q,-q*Y], color='b',linestyle=':' )
+    if((q*X==0 and q*Z==0)):
+       X=Y
+       Z=Y
+    if((q*X==0 and q*Y==0)):
+       Y=Z
+       X=Z
+    if((q*Z==0 and q*Y==0)):
+       Y=X
+       Z=X   
+    if(q<0):
+        if(X<0):
+          ax.set_xlim(-q*X,q*X)
+        else:
+          ax.set_xlim(q*X,-q*X)
+        if(Z<0):
+          ax.set_ylim(q*Z,-q*Z)
+        else:
+          ax.set_ylim(-q*Z,q*Z)
+        if(Y<0):
+          ax.set_zlim(-q*Y,q*Y)
+        else:
+          ax.set_zlim(q*Y,-q*Y)
+    else:
+        if(X<0):
+          ax.set_xlim(q*X,-q*X)
+        else:
+          ax.set_xlim(-q*X,q*X)
+        if(Z<0):
+          ax.set_ylim(-q*Z,q*Z)
+        else:
+          ax.set_ylim(q*Z,-q*Z)
+        if(Y<0):
+          ax.set_zlim(q*Y,-q*Y)
+        else:
+          ax.set_zlim(-q*Y,q*Y)
+    plt.show()
+def criarvetor2(q,A,B,C,D,E,F,G,H,I):
+    X=B*F-C*E
+    Y=-A*F+C*D
+    Z=A*E-B*D
+    X=X+G
+    Y=Y+H
+    Z=Z+I
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ratio=0.3
+    ratio=0.25 
+    if(q*X==0 or q*Y==0 or q*Z==0):
+        ratio=0.15
+    if(q*X-q*Y-q*Z>100 or q*X-q*Y-q*Z<-100):
+        ratio=0.2
+    if(q*X-q*Y-q*Z>1000 or q*X-q*Y-q*Z<-1000):
+        ratio=0.1
+    if(q*X-q*Y-q*Z>10000 or q*X-q*Y-q*Z<-10000):
+        ratio=0.05    
+    ax.quiver(0,0,0,q*X,q*Z,q*Y,pivot='tail',arrow_length_ratio=ratio)
+    ax.set_xlabel('x')
+    ax.set_ylabel('z')
+    ax.set_zlabel('y')
+    ax.set_xticks([q*X,-q*X])
+    ax.set_yticks([q*Z,-q*Z])
+    ax.set_zticks([Y*q,-q*Y])
+    ax.plot([q*X, -q*X], [0, 0], [0, 0], color='r',linestyle=':')
+    ax.plot([0, 0], [q*Z, -q*Z], [0, 0], color='g',linestyle=':')
+    ax.plot([0,0], [0, 0], [Y*q,-q*Y], color='b',linestyle=':' )
+    if(q<0):
+        if(X<0):
+          ax.set_xlim(-q*X,q*X)
+        else:
+          ax.set_xlim(q*X,-q*X)
+        if(Z<0):
+          ax.set_ylim(q*Z,-q*Z)
+        else:
+          ax.set_ylim(-q*Z,q*Z)
+        if(Y<0):
+          ax.set_zlim(-q*Y,q*Y)
+        else:
+          ax.set_zlim(q*Y,-q*Y)
+    else:
+        if(X<0):
+          ax.set_xlim(q*X,-q*X)
+        else:
+          ax.set_xlim(-q*X,q*X)
+        if(Z<0):
+          ax.set_ylim(-q*Z,q*Z)
+        else:
+          ax.set_ylim(q*Z,-q*Z)
+        if(Y<0):
+          ax.set_zlim(q*Y,-q*Y)
+        else:
+          ax.set_zlim(-q*Y,q*Y)
+    plt.show()
+def criarvetor3(A,B,C):
+    X=A
+    Y=B
+    Z=C
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    if(X==0 or Y==0 or Z==0):
+        ratio=0.001
+    if(X-Y-Z>100 or X-Y-Z<-100):
+        ratio=0.001
+    if(X-Y-Z>1000 or X-Y-Z<-1000):
+        ratio=0.0005
+    if(X-Y-Z>10000 or X-Y-Z<-10000):
+        ratio=0.00025
+    if(X==0 and Y==0 or Y==0 and Z==0 or Z==0 and X==0):
+        ratio=0.000005
+    ax.quiver(0,0,0,X,Z,Y,pivot='tail',arrow_length_ratio=ratio)
+    ax.set_xlabel('x')
+    ax.set_ylabel('z')
+    ax.set_zlabel('y')
+    ax.set_xticks([X,-X])
+    ax.set_yticks([Z,-Z])
+    ax.set_zticks([Y,-Y])
+    ax.plot([X, -X], [0, 0], [0, 0], color='r',linestyle=':')
+    ax.plot([0, 0], [Z, -Z], [0, 0], color='g',linestyle=':')
+    ax.plot([0,0], [0, 0], [Y,-Y], color='b',linestyle=':' )
+    if(X<0):
+     ax.set_xlim(X,-X)
+    else:
+     ax.set_xlim(-X,X)
+    if(Z<0):
+     ax.set_ylim(-Z,Z)
+    else:
+     ax.set_ylim(Z,-Z)
+    if(Y<0):
+     ax.set_zlim(Y,-Y)
+    else:
+     ax.set_zlim(-Y,Y)
+    plt.show()
+janela = ctk.CTk()
+janela.geometry("1280x720")
+imagem = Image.open("C:/Users/JoseAlves/Desktop/f.png")
+imagem = imagem.resize((1280, 720))  
+imagem_tk = ImageTk.PhotoImage(imagem)
+label = ctk.CTkLabel(janela, image=imagem_tk,text="")
+label.place(x=0, y=0, relwidth=1, relheight=1)
+formula1 = ctk.CTkButton(janela, text="",width=100, height=40,fg_color='darkblue',command=janela1)
+formula1.place(x=580,y=400)
+formula2 = ctk.CTkButton(janela, text="",width=100, height=40,command=janela3,fg_color='darkblue')
+formula2.place(x=1020,y=400)
+formula3 = ctk.CTkButton(janela, text="",width=100, height=40,fg_color='darkblue',command=janela2)
+formula3.place(x=160,y=400)
+janela.mainloop()
+
